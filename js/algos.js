@@ -131,32 +131,67 @@ function heapsort() {
   console.log("heapsort - implement me !");
 }
 
-function quicksort() {
-  function pivot(){
-    let pivot = csvData[csvData.length - 2].dist
-    let indexP = csvData.findIndex(obj => obj.dist === pivot)
-    return indexP
-  }
+console.log('qui'+Math.random(11))
 
-  let p = csvData[csvData.length - 2].dist
-  let iP = csvData.findIndex(obj => obj.dist === p)
+function partition(left, right) {
+  let pivot = Math.floor(Math.random() * (right - left) + left);
+  swap(pivot, right);
+  pivot = right;
 
-  console.log(p)
-  console.log(iP)
-  console.log(csvData.findIndex(obj => obj.dist === p))
-var j
-  
-    for (let i = 0; i < csvData.length; i++) {
-      if (isLess(pivot(),i)) {
-        for ( j = csvData.length-1  ; j > 0; j--) {
-          if (isLess(j, pivot())&& i!=j) { swap(j, i); console.log(pivot()); console.log(j);  ; break }
-          
-        }
+  let i = left - 1;
+  let j = left;
+  while (j < pivot) {
+      if (isLess(pivot, j)) {
+          j++;
+      } else {
+          i++;
+          swap(i, j);
+          j++;
       }
-    }
-  
+  }
+  swap(i+1, pivot);
+  return i + 1;
+}
+
+function quick(left, right) {
+  if (left < right) {
+      let pivot = partition(left, right);
+      quick(left, pivot - 1);
+      quick(pivot + 1, right);
+  }
+}
+
+
+function quicksort(){
+  console.log('qui:'+Math.random(2)*(10)
+quick(0, csvData.length - 1);
+
+  // partitionner(T, premier, dernier, pivot){
+  //   swap(pivot, dernier) // échange le pivot avec le dernier du tableau , le pivot devient le dernier du tableau
+  //   j = premier
+  //   for (i = premier; i < dernier - 1; i++) {  // la boucle se termine quand i = (dernier-1).
+  //     if (T[i] <= T[dernier]) {
+  //       swap(i, j)
+
+  //       j = j + 1
+  //       swap(dernier, j)
+  //     }
+  //   }
+  //   return j
+  // }
+
+  // tri_rapide(T, premier, dernier){
+  //   if (premier < dernier) { 
+  //   pivot = choix_pivot(T, premier, dernier)
+  //   pivot = partitionner(T, premier, dernier, pivot)
+  //   tri_rapide(T, premier, pivot - 1)
+  //   tri_rapide(T, pivot + 1, dernier)}
+  // }
+
   console.log("quicksort - implement me !");
 }
+
+
 function quick3sort() {
   console.log("quick3sort - implement me !");
 }
